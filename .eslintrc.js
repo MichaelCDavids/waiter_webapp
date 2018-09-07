@@ -7,6 +7,9 @@ module.exports = {
     "globals": {
         "describe" : true,
         "it" : true,
-        "require" : true
-    }
+        "require" : true,
+        "beforeEach" : true,
+        "after" : true
+    },
+
 };
