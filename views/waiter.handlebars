@@ -2,57 +2,22 @@
     <div class="col s12">
         <div class="card-panel green white-text center">Select days that you are available to work</div>
     </div>
-
-    <form method="post">
+    <form action="" method="post" class="">
+        {{#each data.days}}
         <p>
             <label>
-                <input type="checkbox" name="days" value="Sunday" />
-                <span>Sunday</span>
+                <input type="checkbox" name="days" value="{{this.day_name}}">
+                <span>{{this.day_name}}</span>
             </label>
         </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Monday" />
-                <span>Monday</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Tuesday" />
-                <span>Tuesday</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Wednesday" />
-                <span>Wednesday</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Thursday" />
-                <span>Thursday</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Friday" />
-                <span>Friday</span>
-            </label>
-        </p>
-        <p>
-            <label>
-                <input type="checkbox" name="days" value="Saturday" />
-                <span>Saturday</span>
-            </label>
-        </p>
+        {{/each}}
         <button class="btn btn-large green" type="submit">Submit</button>
     </form>
-
-
-    <ul>
-        {{#each shift}}
-            <li>{{this}}</li>
+    <div class="card-panel green white-text center">Days you selected to work</div>
+    <ul class="collection">
+        {{#each data.shift}}
+        <li class="collection-item">{{this}}</li>
         {{/each}}
     </ul>
+    <div style="height:300px"></div>
 </div>
