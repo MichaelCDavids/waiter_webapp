@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col s12">
+        <div class="card-panel green white-text center">Select days that you are available to work</div>
+    </div>
+    <form action="" method="post" class="">
+        {{#each data.days}}
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="{{this.day_name}}">
+                <span>{{this.day_name}}</span>
+            </label>
+        </p>
+        {{/each}}
+        <button class="btn btn-large green" type="submit">Submit</button>
+    </form>
+    <div class="card-panel green white-text center">Days you selected to work</div>
+    <ul class="collection">
+        {{#each data.shift}}
+        <li class="collection-item">{{this}}</li>
+        {{/each}}
+    </ul>
+    <div style="height:300px"></div>
+</div>
