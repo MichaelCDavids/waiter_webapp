@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="col s12">
+        <div class="card-panel green white-text center">Select days that you are available to work</div>
+    </div>
+
+    <form method="post">
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Sunday" />
+                <span>Sunday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Monday" />
+                <span>Monday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Tuesday" />
+                <span>Tuesday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Wednesday" />
+                <span>Wednesday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Thursday" />
+                <span>Thursday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Friday" />
+                <span>Friday</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="checkbox" name="days" value="Saturday" />
+                <span>Saturday</span>
+            </label>
+        </p>
+        <button class="btn btn-large green" type="submit">Submit</button>
+    </form>
+
+
+    <ul>
+        {{#each shift}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</div>

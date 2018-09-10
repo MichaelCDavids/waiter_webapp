@@ -16,7 +16,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/waiter_availability';
+const connectionString = process.env.DATABASE_URL || 'postgresql://muji:pg123@localhost:5432/waiter_availability';
 
 const pool = new Pool({
     connectionString,
@@ -47,9 +47,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', waiterRoutes.index);
-app.get('/waiters/:username', waiterRoutes.index);
-app.post('/waiters/:username', waiterRoutes.index);
-app.get('/days', waiterRoutes.index);
+app.get('/waiters/:username', waiterRoutes.getWorkDays);
+app.post('/waiters/:username', waiterRoutes.scheduleWorkDays);
+app.get('/days', waiterRoutes.admin);
 
 let PORT = process.env.PORT || 3009;
 

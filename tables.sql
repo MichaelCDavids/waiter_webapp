@@ -30,10 +30,10 @@ INSERT into staff (first_name, position) values ('Pumlani','Waiter');
 INSERT into staff (first_name, position) values ('Lwando','Waiter');
 INSERT into staff (first_name, position) values ('Sibabalwe','Waiter');
 
-INSERT into weekdays (weekdays) values ('Sunday');
-INSERT into weekdays (weekdays) values ('Monday');
-INSERT into weekdays (weekdays) values ('Tuesday');
-INSERT into weekdays (weekdays) values ('Wednesday');
-INSERT into weekdays (weekdays) values ('Thursday');
-INSERT into weekdays (weekdays) values ('Friday');
-INSERT into weekdays (weekdays) values ('Saturday');
+INSERT into weekdays (week_days) values ('Sunday');
+INSERT into weekdays (week_days) values ('Monday');
+INSERT into weekdays (week_days) values ('Tuesday');
+INSERT into weekdays (week_days) values ('Wednesday');
+INSERT into weekdays (week_days) values ('Thursday');
+INSERT into weekdays (week_days) values ('Friday');
+INSERT into weekdays (week_days) values ('Saturday');

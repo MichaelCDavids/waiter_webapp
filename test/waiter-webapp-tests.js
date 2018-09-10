@@ -9,13 +9,13 @@ const pool = new Pool({
 });
 
 describe('The Waiter Availability Webapp Functions', function () {
-    beforeEach(async function () {
-        await pool.query('delete from shifts');
+    beforeEach(function(){
+        pool.query('delete from shifts');
     });
 
-    it('should allow a waiter to choose days that he/she can work on', async function () {
+    it('should allow a waiter to choose days that he/she can work on', function () {
         let waiterFactoryObject = WaiterFactory(pool);
-        let variable = await waiterFactoryObject.chooseDays();
+        let variable = waiterFactoryObject.chooseDays();
         assert.strictEqual(variable, 'This function should set days a waiter is available');
     });
 
@@ -31,7 +31,7 @@ describe('The Waiter Availability Webapp Functions', function () {
     //     assert.strictEqual(variable, '');
     // });
 
-    after(async function () {
-        await pool.end();
+    after( function () {
+         pool.end();
     });
 });
