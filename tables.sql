@@ -12,7 +12,6 @@ create table weekdays
     day_name text not null
 );
 
-
 create table shifts(
     id serial primary key not null,
     waiter_id int not null,
@@ -22,17 +21,16 @@ create table shifts(
 );
 
 INSERT into staff (first_name) values ('Michael');
-INSERT into staff (first_name) values ('Unalo');
 INSERT into staff (first_name) values ('Vusi');
+INSERT into staff (first_name) values ('Sibabalwe');
+INSERT into staff (first_name) values ('Unalo');
 INSERT into staff (first_name) values ('Schtoo');
 INSERT into staff (first_name) values ('Pumlani');
-INSERT into staff (first_name) values ('Lwando');
-INSERT into staff (first_name) values ('Sibabalwe');
 
-INSERT into weekdays (day_name) values ('Sunday');
 INSERT into weekdays (day_name) values ('Monday');
 INSERT into weekdays (day_name) values ('Tuesday');
 INSERT into weekdays (day_name) values ('Wednesday');
 INSERT into weekdays (day_name) values ('Thursday');
 INSERT into weekdays (day_name) values ('Friday');
 INSERT into weekdays (day_name) values ('Saturday');
+INSERT into weekdays (day_name) values ('Sunday');
