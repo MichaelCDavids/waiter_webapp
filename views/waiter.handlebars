@@ -6,18 +6,18 @@
         {{#each data.days}}
         <p>
             <label>
-                <input type="checkbox" name="days" value="{{this.day_name}}">
+                <input type="checkbox" selected="{{selected}}" name="days" value="{{this.day_name}}">
                 <span>{{this.day_name}}</span>
             </label>
         </p>
         {{/each}}
         <button class="btn btn-large green" type="submit">Submit</button>
     </form>
-    <div class="card-panel green white-text center">Days you selected to work</div>
+    {{!-- <div class="card-panel green white-text center">Days you selected to work</div>
     <ul class="collection">
         {{#each data.shift}}
         <li class="collection-item">{{this}}</li>
         {{/each}}
-    </ul>
+    </ul> --}}
     <div style="height:300px"></div>
 </div>
