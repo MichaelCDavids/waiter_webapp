@@ -31,9 +31,6 @@ describe('The Waiter Availability Webapp Functions', function () {
         let waiterFactoryObject = WaiterFactory(pool);
         let variable = await waiterFactoryObject.days();
         assert.deepEqual(variable, [{
-            day_name: 'Sunday'
-        },
-        {
             day_name: 'Monday'
         },
         {
@@ -50,6 +47,9 @@ describe('The Waiter Availability Webapp Functions', function () {
         },
         {
             day_name: 'Saturday'
+        },
+        {
+            day_name: 'Sunday'
         }
         ]);
     });
@@ -66,7 +66,7 @@ describe('The Waiter Availability Webapp Functions', function () {
     //     assert.strictEqual(variable, '');
     // });
 
-    // after(async function () {
-    //     await pool.end();
-    // });
+    after(async function () {
+        await pool.end();
+    });
 });
