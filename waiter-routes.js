@@ -1,5 +1,4 @@
 module.exports = function (waiterFactory) {
-
     async function waiters (req, res) {
         let name = req.params.username;
         let data = {
@@ -19,10 +18,6 @@ module.exports = function (waiterFactory) {
         };
         res.render('waiter', { data });
     };
-    async function admin (req, res) {
-        res.render('admin');
-    };
-
     async function admin (req, res) {
         res.render('admin');
     };
