@@ -2,4 +2,21 @@
     <div class="col s12">
         <div class="card-panel green white-text center">Weekly Shifts for waiters</div>
     </div>
+    <table>
+        <tr>
+            <th>Day</th>
+        <th>Staff</th>
+        </tr>
+        
+    
+    {{#each data.days}}
+    <tr>
+        <td>{{this.day_name}}</td>
+        <td>people who selected to work</td>
+    </tr>
+    {{/each}}
+    </table>
+    <form action="/days" method="post">
+      <button class="btn btn-large green" type="submit">Reset</button>
+    </form>
 </div>

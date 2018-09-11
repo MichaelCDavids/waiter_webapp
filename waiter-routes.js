@@ -19,7 +19,10 @@ module.exports = function (waiterFactory) {
         res.render('waiter', { data });
     };
     async function admin (req, res) {
-        res.render('admin');
+        let data = {
+            days: await waiterFactory.days()
+        };
+        res.render('admin', { data });
     };
 
     return {
