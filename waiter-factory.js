@@ -27,11 +27,16 @@ module.exports = function (pool) {
             shift.push(dayName.rows[0].day_name);
         }
         return shift;
+    };
+
+    async function resetShifts () {
+        await pool.query('delete from shifts');
     }
 
     return {
         schedule: setDays,
         days: getWeekDays,
-        shift: getShift
+        shift: getShift,
+        clear: resetShifts
     };
 };

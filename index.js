@@ -49,6 +49,7 @@ app.use(bodyParser.json());
 app.get('/waiters/:username', waiterRoutes.waiters);
 app.post('/waiters/:username', waiterRoutes.bookShift);
 app.get('/days', waiterRoutes.admin);
+app.post('/days', waiterRoutes.admin);
 
 let PORT = process.env.PORT || 3009;
 

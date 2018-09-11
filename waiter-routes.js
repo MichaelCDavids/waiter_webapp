@@ -24,10 +24,18 @@ module.exports = function (waiterFactory) {
         };
         res.render('admin', { data });
     };
+    async function adminPost (req, res) {
+        await waiterFactory.clear();
+        let data = {
+            days: await waiterFactory.days()
+        };
+        res.render('admin', { data });
+    };
 
     return {
         waiters,
         bookShift,
-        admin
+        admin,
+        adminPost
     };
 };
