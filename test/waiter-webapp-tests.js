@@ -66,7 +66,7 @@ describe('The Waiter Availability Webapp Functions', function () {
     //     assert.strictEqual(variable, '');
     // });
 
-    after(async function () {
-        await pool.end();
-    });
+    // after(async function () {
+    //     await pool.end();
+    // });
 });
