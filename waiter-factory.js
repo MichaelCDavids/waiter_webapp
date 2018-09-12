@@ -29,11 +29,9 @@ module.exports = function (pool) {
         return shift;
     };
 
-    async function waitersWithDay() {
+    async function waitersWithDay () {
         let list = await pool.query('select day_name from weekdays join shifts on shifts.weekday_id=weekdays.id join staff on staff.id=shifts.waiter_id;');
-        console.log("All entries captured");
         let days = list.rows;
-        console.log(days);
         return days;
 
         // let dayName = [];
@@ -52,7 +50,7 @@ module.exports = function (pool) {
 
     return {
         schedule: setDays,
-        days: getWeekDays,
+        // days: getWeekDays,
         shift: getShift,
         reset: resetShifts,
         dayWaiter: waitersWithDay
