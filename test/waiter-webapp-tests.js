@@ -54,6 +54,26 @@ describe('The Waiter Availability Webapp Functions', function () {
         ]);
     });
 
+    it('should clear shifts from database', async function () {
+        let waiterFactoryObject = WaiterFactory(pool);
+        await waiterFactoryObject.reset();
+        let variable = await waiterFactoryObject.shift('Michael');
+        assert.deepEqual(variable, []);
+    });
+
+    it('should get the number of waiters that are working on a day', async function () {
+        let waiterFactoryObject = WaiterFactory(pool);
+        await waiterFactoryObject.schedule('Michael', ['Monday', 'Wednesday', 'Friday']);
+        await waiterFactoryObject.schedule('Vusi', ['Monday', 'Wednesday', 'Friday']);
+        await waiterFactoryObject.schedule('Unalo', ['Monday', 'Wednesday', 'Friday']);
+        await waiterFactoryObject.schedule('Sibabalwe', ['Tuesday', 'Thursday', 'Saturday']);
+        await waiterFactoryObject.schedule('Pumlani', ['Tuesday', 'Thursday', 'Saturday']);
+        await waiterFactoryObject.schedule('Schtoo', ['Tuesday', 'Thursday', 'Saturday']);
+        let number = await waiterFactoryObject.dayWaiter();
+        console.log(number);
+        assert.deepEqual(number, 18);
+    });
+
     // it('should clear shifts for one week', async function () {
     //     let waiterFactoryObject = WaiterFactory(pool);
     //     let variable = await waiterFactoryObject.function();

@@ -2,19 +2,19 @@ module.exports = function (pool) {
     async function setDays (name, shift) {
         let person = await pool.query('select id from staff where first_name=$1', [name]);
         if (person.rowCount === 0) {
-            return `${name} is not a waiter`;
+            return `Sorry we do not have ${name} on our records`;
         };
-
         for (const day of shift) {
             let dayID = await pool.query('select id from weekdays where day_name=$1', [day]);
             await pool.query('insert into shifts (waiter_id, weekday_id) values ($1,$2)', [person.rows[0].id, dayID.rows[0].id]);
         };
+        return `Thank you for selecting your shift for the week ${name}`;
     };
 
-    async function getWeekDays () {
-        let list = await pool.query('select day_name from weekdays');
-        return list.rows;
-    };
+    // async function getWeekDays () {
+    //     let list = await pool.query('select day_name from weekdays');
+    //     return list.rows;
+    // };
 
     async function getShift (name) {
         let person = await pool.query('select id from staff where first_name=$1', [name]);
@@ -29,14 +29,32 @@ module.exports = function (pool) {
         return shift;
     };
 
-    async function resetShifts () {
+    async function waitersWithDay() {
+        let list = await pool.query('select day_name from weekdays join shifts on shifts.weekday_id=weekdays.id join staff on staff.id=shifts.waiter_id;');
+        console.log("All entries captured");
+        let days = list.rows;
+        console.log(days);
+        return days;
+
+        // let dayName = [];
+
+        // for (const day of days) {
+        //     let list2 = await pool.query('select day_name,first_name  from weekdays join  shifts on  shifts.weekday_id=weekdays.id join staff on staff.id=shifts.waiter_id where day_name=$1',[day]);
+        //     console.log('Day And Name');
+        //     console.log(list2.rows);
+        // }
+        // return  dayName;
+    };
+
+    async function resetShifts() {
         await pool.query('delete from shifts');
-    }
+    };
 
     return {
         schedule: setDays,
         days: getWeekDays,
         shift: getShift,
-        clear: resetShifts
+        reset: resetShifts,
+        dayWaiter: waitersWithDay
     };
 };

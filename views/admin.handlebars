@@ -4,19 +4,17 @@
     </div>
     <table>
         <tr>
-            <th>Day</th>
-        <th>Staff</th>
+            <th>Day of the Week</th>
+            <th>Number of waiters Available</th>
         </tr>
-        
-    
-    {{#each data.days}}
-    <tr>
-        <td>{{this.day_name}}</td>
-        <td>people who selected to work</td>
-    </tr>
-    {{/each}}
+        {{#each data.days}}
+        <tr>
+            <td>{{this.day_name}}</td>
+            <td>{{this.waiters}}</td>
+        </tr>
+        {{/each}}
     </table>
-    <form action="/" method="post">
-      <button class="btn btn-large green" type="submit">Reset</button>
+    <form id="reset"action="/days" method="post">
     </form>
+        <button class="btn btn-large green" type="submit" form="rest">Reset</button>
 </div>

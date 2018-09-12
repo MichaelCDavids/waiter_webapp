@@ -46,6 +46,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.get('/',waiterRoutes.home);
 app.get('/waiters/:username', waiterRoutes.waiters);
 app.post('/waiters/:username', waiterRoutes.bookShift);
 app.get('/days', waiterRoutes.admin);
