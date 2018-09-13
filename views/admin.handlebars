@@ -10,11 +10,11 @@
         {{#each data.days}}
         <tr>
             <td>{{this.day_name}}</td>
-            <td>{{this.waiters}}</td>
+            <td>{{this.waiter_count}}</td>
         </tr>
         {{/each}}
     </table>
     <form id="reset"action="/days" method="post">
+        <button class="btn btn-large green" type="submit" form="reset">Reset</button>
     </form>
-        <button class="btn btn-large green" type="submit" form="rest">Reset</button>
 </div>
