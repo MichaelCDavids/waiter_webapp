@@ -16,7 +16,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://muji:pg123@localhost:5432/waiter_availability';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/waiter_availability';
 
 const pool = new Pool({
     connectionString,
@@ -36,7 +36,14 @@ let waiterFactory = WaiterFactory(pool);
 let waiterRoutes = WaiterRoutes(waiterFactory);
 
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        "isChecked": function () {
+          if (this.checked) {
+              return 'checked';
+          }
+        }
+      }
 }));
 
 app.set('view engine', 'handlebars');
@@ -46,9 +53,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.get('/',waiterRoutes.home);
-app.get('/waiters/:username', waiterRoutes.waiters);
-app.post('/waiters/:username', waiterRoutes.bookShift);
+app.get('/waiters/:username', waiterRoutes.select);
+app.post('/waiters/:username', waiterRoutes.update);
 app.get('/days', waiterRoutes.admin);
 
 let PORT = process.env.PORT || 3009;

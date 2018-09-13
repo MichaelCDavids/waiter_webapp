@@ -16,37 +16,28 @@ describe('The Waiter Availability Webapp Functions', function () {
     it('should allow a waiter to choose days that he/she can work on', async function () {
         let waiterFactoryObject = WaiterFactory(pool);
         await waiterFactoryObject.schedule('Michael', ['Monday', 'Wednesday', 'Friday']);
-        let variable = await waiterFactoryObject.shift('Michael');
-        assert.deepEqual(variable, ['Monday', 'Wednesday', 'Friday']);
-    });
-
-    it('should return a list of days a waiter is booked for', async function () {
-        let waiterFactoryObject = WaiterFactory(pool);
-        await waiterFactoryObject.schedule('Michael', ['Wednesday', 'Friday', 'Sunday']);
-        let variable = await waiterFactoryObject.shift('Michael');
-        assert.deepEqual(variable, ['Wednesday', 'Friday', 'Sunday']);
-    });
-
-    it('should return a list of days for the week', async function () {
-        let waiterFactoryObject = WaiterFactory(pool);
-        let variable = await waiterFactoryObject.days();
-        assert.deepEqual(variable, [{
+        let shift = await waiterFactoryObject.getShift('Michael');
+        assert.deepEqual(shift, [{
             day_name: 'Monday'
-        },
-        {
-            day_name: 'Tuesday'
         },
         {
             day_name: 'Wednesday'
         },
         {
-            day_name: 'Thursday'
+            day_name: 'Friday'
+        }
+        ]);
+    });
+
+    it('should return a list of days a waiter is booked for', async function () {
+        let waiterFactoryObject = WaiterFactory(pool);
+        await waiterFactoryObject.schedule('Michael', ['Wednesday', 'Friday', 'Sunday']);
+        let variable = await waiterFactoryObject.getShift('Michael');
+        assert.deepEqual(variable, [{
+            day_name: 'Wednesday'
         },
         {
             day_name: 'Friday'
-        },
-        {
-            day_name: 'Saturday'
         },
         {
             day_name: 'Sunday'
@@ -54,37 +45,8 @@ describe('The Waiter Availability Webapp Functions', function () {
         ]);
     });
 
-    it('should clear shifts from database', async function () {
-        let waiterFactoryObject = WaiterFactory(pool);
-        await waiterFactoryObject.reset();
-        let variable = await waiterFactoryObject.shift('Michael');
-        assert.deepEqual(variable, []);
-    });
 
-    it('should get the number of waiters that are working on a day', async function () {
-        let waiterFactoryObject = WaiterFactory(pool);
-        await waiterFactoryObject.schedule('Michael', ['Monday', 'Wednesday', 'Friday']);
-        await waiterFactoryObject.schedule('Vusi', ['Monday', 'Wednesday', 'Friday']);
-        await waiterFactoryObject.schedule('Unalo', ['Monday', 'Wednesday', 'Friday']);
-        await waiterFactoryObject.schedule('Sibabalwe', ['Tuesday', 'Thursday', 'Saturday']);
-        await waiterFactoryObject.schedule('Pumlani', ['Tuesday', 'Thursday', 'Saturday']);
-        await waiterFactoryObject.schedule('Schtoo', ['Tuesday', 'Thursday', 'Saturday']);
-        let number = await waiterFactoryObject.dayWaiter();
-        console.log(number);
-        assert.deepEqual(number, 18);
-    });
-
-    // it('should clear shifts for one week', async function () {
-    //     let waiterFactoryObject = WaiterFactory(pool);
-    //     let variable = await waiterFactoryObject.function();
-    //     assert.strictEqual(variable, '');
-    // });
-
-    // it('should', async function () {
-    //     let waiterFactoryObject = WaiterFactory(pool);
-    //     let variable = await waiterFactoryObject.function();
-    //     assert.strictEqual(variable, '');
-    // });
+    // it('should');
 
     after(async function () {
         await pool.end();

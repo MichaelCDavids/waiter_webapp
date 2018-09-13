@@ -1,41 +1,38 @@
 module.exports = function (waiterFactory) {
-    async function home (req, res) {
-        res.render('home');
-    }
-
-    async function waiters (req, res) {
+    
+    async function select (req, res) { 
+        let days= await waiterFactory.userShift(req.params.username)
         let data = {
-            days: await waiterFactory.days()
+            days
         };
 
         res.render('waiter', { data });
     };
 
-    async function bookShift (req, res) {
+    async function update (req, res) {
         let name = req.params.username;
-        let shift = req.body.days;
-
+        let shift = Array.isArray(req.body.days) ? req.body.days : [req.body.days];
         await waiterFactory.schedule(name, shift);
-
         let data = {
-            days: await waiterFactory.days()
+            days: await waiterFactory.userShift(req.params.username)
         };
-
         res.render('waiter', { data });
     };
 
-    async function admin (req, res) {
+    async function admin (req, res) { 
+        
+        let days = await waiterFactory.days()
+        
         let data = {
-            days: await waiterFactory.dayWaiter()
+            days
         };
-
-        res.render('admin', { data });
+        
+        res.render('admin',{data});
     };
 
     return {
-        home,
-        waiters,
-        bookShift,
+        select,
+        update,
         admin
     };
 };

@@ -2,19 +2,25 @@
     <div class="col s12">
         <div class="card-panel green white-text center">Weekly Shifts for waiters</div>
     </div>
-    <table>
+    {{#each data.days}}
+    <div class="box">
+        <td class="weekdays">{{this.day_name}}</td>
+    </div>
+    {{/each}}
+
+    {{!-- <table>
         <tr>
             <th>Day of the Week</th>
-            <th>Number of waiters Available</th>
+            <th>Staff Working</th>
         </tr>
         {{#each data.days}}
         <tr>
             <td>{{this.day_name}}</td>
-            <td>{{this.waiter_count}}</td>
+            <td>people who are working</td>
         </tr>
         {{/each}}
-    </table>
-    <form id="reset"action="/days" method="post">
+    </table> --}}
+    {{!-- <form id="reset" action="/days" method="post">
         <button class="btn btn-large green" type="submit" form="reset">Reset</button>
-    </form>
+    </form> --}}
 </div>

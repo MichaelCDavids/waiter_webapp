@@ -3,4 +3,16 @@
     height:50px;
     float: left;
     margin: 2px;
+    text-align: center;
 }
+
+.entry {
+    border: 1px solid aquamarine;
+    background-color: azure;
+    height: auto;
+    color: cadetblue;
+  }
+  .entry p {
+    padding: 10px;
+  }
+  
