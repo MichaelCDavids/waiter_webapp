@@ -6,8 +6,13 @@
     
     <div style="height:50px"></div>
     
-    
-    
+    {{#if messages.info}}
+    <div class="col s12 entry center">
+        <p>{{messages.info}}</p>
+    </div>
+    {{/if}}
+
+    <div style="height:50px"></div>
     <div class="row" class="clearfix">
         <form id="shiftForm" action="" method="post" class="clearfix">
             {{#each data.days}}
@@ -34,12 +39,7 @@
     </div>
     
     
-    {{#if messages.info}}
-    <div class="ten columns offset-by-one columns entry">
-        <p>{{messages.info}}</p>
-    </div>
-    {{/if}}
-
+    
 
     {{!--
     <div class="card-panel green white-text center">Days you selected to work</div>
