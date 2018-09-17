@@ -130,7 +130,7 @@ describe('The Waiter Availability Webapp Functions', function () {
         assert.deepEqual(variable, [{
             weekday: 'Sunday',
             waiters: ['Mike', 'Unalo', 'Greg', 'Trinesh'],
-            status: 'blue'
+            status: 'orange'
         },
         {
             weekday: 'Monday',
