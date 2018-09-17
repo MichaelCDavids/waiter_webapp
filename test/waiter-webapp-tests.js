@@ -21,11 +21,6 @@ describe('The Waiter Availability Webapp Functions', function () {
         let variable = await waiterFactoryObject.schedule('Mike', ['Wednesday', 'Friday', 'Sunday']);
         assert.deepEqual(variable, `Thank you for selecting your shift for the week Mike`);
     });
-    it('the setDays function should be able to set a shift for a waiter and return a message saying depending on username', async function () {
-        let waiterFactoryObject = WaiterFactory(pool);
-        let variable = await waiterFactoryObject.schedule('Ash', ['Wednesday', 'Friday', 'Sunday']);
-        assert.deepEqual(variable, `Sorry we do not have Ash on our records`);
-    });
     it('the selectedShift function should return a list of objects with the shift for one user', async function () {
         let waiterFactoryObject = WaiterFactory(pool);
         let variable = await waiterFactoryObject.shiftSelected('Mike');
@@ -55,12 +50,12 @@ describe('The Waiter Availability Webapp Functions', function () {
         let waiterFactoryObject = WaiterFactory(pool);
         await waiterFactoryObject.schedule('Mike', ['Wednesday', 'Friday', 'Sunday']);
         let variable = await waiterFactoryObject.dayOrder('Mike');
-        assert.deepEqual(variable, [ { weekday: 'Sunday', waiters: [ 'Michael' ] },
+        assert.deepEqual(variable, [ { weekday: 'Sunday', waiters: [ 'Mike' ] },
             { weekday: 'Monday', waiters: [] },
             { weekday: 'Tuesday', waiters: [] },
-            { weekday: 'Wednesday', waiters: [ 'Michael' ] },
+            { weekday: 'Wednesday', waiters: [ 'Mike' ] },
             { weekday: 'Thursday', waiters: [] },
-            { weekday: 'Friday', waiters: [ 'Michael' ] },
+            { weekday: 'Friday', waiters: [ 'Mike' ] },
             { weekday: 'Saturday', waiters: [] } ]);
     });
     it('the reset function should clear all shifts for users', async function () {
