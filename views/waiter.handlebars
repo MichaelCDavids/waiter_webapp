@@ -1,56 +1,29 @@
 <div class="container">
-    
-    
     <div class="card-panel green white-text center">Please select days that you are available to work</div>
-    
-    
     <div style="height:50px"></div>
-    
     {{#if messages.info}}
     <div class="col s12 entry center">
         <p>{{messages.info}}</p>
     </div>
     {{/if}}
-
     <div style="height:50px"></div>
     <div class="row" class="clearfix">
         <form id="shiftForm" action="" method="post" class="clearfix">
             {{#each data.days}}
             <div class="box">
                 <label>
-                    <input type="checkbox" name="days" {{isChecked}}  value="{{this.day_name}}">
+                    <input type="checkbox" name="days" {{isChecked}} value="{{this.day_name}}">
                     <span>{{this.day_name}}</span>
                 </label>
             </div>
             {{/each}}
         </form>
     </div>
-    
-    
-    
     <div style="height:50px"></div>
-    
-    
-    
     <div class="row">
         <div class="col s12 center">
             <button class="btn btn-large green " type="submit" form="shiftForm">Submit</button>
         </div>
     </div>
-    
-    
-    
-
-    {{!--
-    <div class="card-panel green white-text center">Days you selected to work</div>
-    <ul class="collection">
-        {{#each data.shift}}
-        <li class="collection-item">{{this}}</li>
-        {{/each}}
-    </ul> --}}
-
-
     <div style="height:200px"></div>
-
-
 </div>
