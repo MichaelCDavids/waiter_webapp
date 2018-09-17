@@ -16,7 +16,7 @@ module.exports = function (waiterFactory) {
         res.render('waiter', { data });
     };
     async function admin (req, res) {
-        let all = await waiterFactory.orderByDay();
+        let all = await waiterFactory.dayOrder();
         res.render('admin', { all });
     };
     async function adminReset (req, res) {
