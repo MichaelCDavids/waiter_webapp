@@ -56,7 +56,7 @@ module.exports = function (pool) {
         }
         return dayAndNames;
     };
-    async function orderByDay () {
+    async function shiftsObject () {
         let shifts = await allShifts();
         let shiftData = [];
         shifts.map(shift => {
@@ -81,7 +81,7 @@ module.exports = function (pool) {
         schedule: setDays,
         shiftSelected: selectedShift,
         shiftForUser: userShift,
-        orderByDay,
+        dayOrder: shiftsObject,
         resetShifts: reset
     };
 };
