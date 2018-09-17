@@ -2,14 +2,15 @@
     <div class="col s12">
         <div class="card-panel green white-text center">Weekly Shifts for waiters</div>
     </div>
-     <div style="height:50px"></div>
+    <div style="height:50px"></div>
     {{#if messages.info}}
     <div class="col s12 entry center">
         <p>{{messages.info}}</p>
     </div>
-    {{/if}} {{#each all}}
+    {{/if}}
+    {{#each all}}
     <ul class="collection with-header">
-        <li class="collection-item">
+        <li class="collection-item {{status}}">
             <h4>{{weekday}}</h4>
         </li>
         {{#each waiters}}
@@ -17,7 +18,7 @@
         {{/each}}
     </ul>
     {{/each}}
-     <div style="height:50px"></div>
+    <div style="height:50px"></div>
     <div class="row">
         <div class="col s12 center">
             <form id="reset" action="/days" method="post">
@@ -25,5 +26,22 @@
             </form>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col s3 center">
+            <table class="">
+                <tr>
+                    <th class="center">Legend</th>
+                </tr>
+                <tr class="red white-text">
+                    <td class="center">Waiters Total Less Than 3</td>
+                </tr>
+                <tr class="green white-text">
+                    <td class="center">Waiters Total Equal to 3</td>
+                </tr>
+                <tr class="blue white-text">
+                    <td class="center">Waiters Greater Than 3</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
