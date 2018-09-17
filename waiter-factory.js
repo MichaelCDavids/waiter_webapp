@@ -6,8 +6,10 @@ module.exports = function (pool) {
     async function setDays (username, shift) {
         let person = await pool.query('select id from staff where username=$1', [username]);
         if (person.rowCount === 0) {
-            return `Sorry we do not have ${username} on our records`;
+            await pool.query('insert into staff (username) values ($1)', [username]);
+            person = await pool.query('select id from staff where username=$1', [username]);
         };
+
         await pool.query('delete from shifts where waiter_id=$1', [person.rows[0].id]);
         for (const day of shift) {
             let dayID = await pool.query('select id from weekdays where day_name=$1', [day]);
@@ -38,7 +40,7 @@ module.exports = function (pool) {
     };
     async function allShifts () {
         let days = await getWeekDays();
-        let allShifts = await pool.query('select first_name,day_name from weekdays join shifts on shifts.weekday_id=weekdays.id join staff on staff.id=shifts.waiter_id');
+        let allShifts = await pool.query('select username,day_name from weekdays join shifts on shifts.weekday_id=weekdays.id join staff on staff.id=shifts.waiter_id');
         let shifts = allShifts.rows;
         let dayAndNames = [];
         for (let day of days) {
@@ -49,7 +51,7 @@ module.exports = function (pool) {
                     output[today] = [];
                 }
                 if (today === shift.day_name) {
-                    output[today].push(shift.first_name);
+                    output[today].push(shift.username);
                 }
             });
             dayAndNames.push(output);
@@ -76,12 +78,27 @@ module.exports = function (pool) {
         await pool.query('delete from shifts;');
         return `All Shifts has been cleared`;
     }
+
+    async function status () {
+        let shiftData = await shiftsObject();
+        shiftData.forEach(day => {
+            if (day.waiters.length < 3) {
+                day.status = 'red';
+            } else if (day.waiters.length == 3) {
+                day.status = 'green';
+            } else if (day.waiters.length > 3) {
+                day.status = 'blue';
+            }
+        });
+        return shiftData;
+    }
     return {
         days: getWeekDays,
         schedule: setDays,
         shiftSelected: selectedShift,
         shiftForUser: userShift,
         dayOrder: shiftsObject,
-        resetShifts: reset
+        resetShifts: reset,
+        shiftStatus: status
     };
 };
