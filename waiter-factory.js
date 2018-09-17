@@ -87,7 +87,7 @@ module.exports = function (pool) {
             } else if (day.waiters.length == 3) {
                 day.status = 'green';
             } else if (day.waiters.length > 3) {
-                day.status = 'blue';
+                day.status = 'orange';
             }
         });
         return shiftData;
